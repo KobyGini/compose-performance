@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
+
 }
 
 android {
@@ -41,6 +44,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         compose = true
     }
     composeOptions {
@@ -73,5 +77,11 @@ dependencies {
     androidTestImplementation(libs.androidx.benchmark.junit4)
     implementation (libs.androidx.startup.runtime)
     implementation(libs.profileinstaller)
+    implementation(libs.timber)
+
+    /** Hilt **/
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
 }
